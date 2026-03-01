@@ -1119,7 +1119,7 @@ footer {
     }
 }
 .personality-details {
-    margin: 2.5rem 0;
+    margin: 0.5rem 0 2.5rem 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -1209,7 +1209,7 @@ footer {
 
 /* Feedback Section */
 .feedback-section {
-    margin: 2.5rem 0;
+    margin: 0.5rem 0 2.5rem 0;
     padding: 2rem;
     background: rgba(255, 142, 113, 0.03);
     border-radius: 25px;
