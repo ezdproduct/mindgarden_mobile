@@ -500,11 +500,165 @@ document.addEventListener('DOMContentLoaded', () => {
         const postOptions = document.getElementById('post-quiz-options');
         if (postOptions) postOptions.classList.add('hidden');
 
+        // Restart dynamic samples
+        isQuizCompleted = false;
+        startCycleSamples();
+
         // Restart chat flow
         initChat();
     };
 
+    // Updated: Result Update Logic for both Sample & Real data
+    function updateResultsUI(p, finalScores = null, isDemo = false) {
+        const resultsSection = document.getElementById('results');
+        if (isDemo) {
+            resultsSection.classList.add('is-preview');
+        } else {
+            resultsSection.classList.remove('is-preview');
+        }
+
+        // Add flicker effect
+        const resContent = document.querySelector('.results-grid');
+        if (resContent) {
+            resContent.classList.remove('flicker-transition');
+            void resContent.offsetWidth; // Trigger reflow
+            resContent.classList.add('flicker-transition');
+        }
+
+        // Update Chart
+        if (chart) {
+            chart.data.datasets[0].data = finalScores || [80, 80, 80, 80, 80, 80, 80];
+            chart.update('none'); // Update without animation for flicker feel
+        }
+
+        // Show title
+        const titleEl = document.getElementById('res-personality-title');
+        if (titleEl) {
+            titleEl.textContent = p.title;
+            titleEl.classList.remove('hidden');
+        }
+
+        const natureEl = document.getElementById('res-personality-nature');
+        if (natureEl) natureEl.textContent = p.nature;
+
+        // Update Strengths
+        const strengthList = document.getElementById('res-personality-strengths');
+        if (strengthList) {
+            strengthList.innerHTML = '';
+            p.strengths.forEach(s => {
+                const li = document.createElement('li');
+                li.textContent = s;
+                strengthList.appendChild(li);
+            });
+        }
+
+        // Update Weaknesses
+        const weaknessList = document.getElementById('res-personality-weaknesses');
+        if (weaknessList) {
+            weaknessList.innerHTML = '';
+            p.weaknesses.forEach(w => {
+                const li = document.createElement('li');
+                li.textContent = w;
+                weaknessList.appendChild(li);
+            });
+        }
+
+        // Update Career Tags
+        const tagContainer = document.getElementById('res-career-tags');
+        if (tagContainer) {
+            tagContainer.innerHTML = '';
+            p.career.forEach(c => {
+                const span = document.createElement('span');
+                span.textContent = c;
+                tagContainer.appendChild(span);
+            });
+        }
+
+        // Feedback Logic (Hidden in Demo)
+        const feedbackContainer = document.getElementById('res-feedback-container');
+        if (feedbackContainer) {
+            if (isDemo) {
+                feedbackContainer.classList.add('hidden');
+            } else {
+                feedbackContainer.classList.remove('hidden');
+                const feedbackOptions = feedbackContainer.querySelector('.feedback-options');
+                const feedbackResponse = document.getElementById('feedback-response');
+                if (feedbackOptions) feedbackOptions.classList.remove('hidden');
+                if (feedbackResponse) feedbackResponse.classList.add('hidden');
+            }
+        }
+
+        // Update result action button label
+        if (!isDemo) {
+            const resActionBtn = document.getElementById('res-action-btn');
+            if (resActionBtn) {
+                resActionBtn.textContent = 'Làm lại';
+                resActionBtn.onclick = restartQuiz;
+            }
+        }
+    }
+
+    let isQuizCompleted = false;
+    let sampleInterval;
+
+    const sampleProfiles = [
+        {
+            title: 'Kiến trúc sư Hệ thống',
+            nature: 'Bạn sở hữu bộ óc phân tích sắc sảo, luôn tìm kiếm quy luật và cấu trúc trong mọi vấn đề.',
+            strengths: ['Tư duy logic mạnh mẽ', 'Giải quyết vấn đề phức tạp'],
+            weaknesses: ['Đôi khi quá cứng nhắc', 'Khó thấu cảm'],
+            career: ['Software Engineer', 'Data Scientist', 'System Architect'],
+            demoScores: [95, 20, 30, 60, 50, 85, 40]
+        },
+        {
+            title: 'Phù thủy Sáng tạo',
+            nature: 'Bạn nhìn thế giới qua lăng kính của cái đẹp và sự đổi mới. Bạn không chấp nhận những gì rập khuôn.',
+            strengths: ['Trực giác nhạy bén', 'Khả năng thẩm mỹ'],
+            weaknesses: ['Dễ mất tập trung', 'Cảm xúc hay thay đổi'],
+            career: ['UI/UX Designer', 'Creative Director', 'Artist'],
+            demoScores: [25, 45, 95, 35, 20, 60, 75]
+        },
+        {
+            title: 'Sứ giả Thấu cảm',
+            nature: 'Trái tim bạn luôn hướng về con người. Bạn có khả năng cảm nhận được những gì người khác chưa nói ra.',
+            strengths: ['Lắng nghe sâu sắc', 'EQ cao'],
+            weaknesses: ['Dễ bị ảnh hưởng tiêu cực', 'Khó từ chối'],
+            career: ['HR Manager', 'Bác sĩ Gia đình', 'Tư vấn Tâm lý'],
+            demoScores: [35, 95, 45, 75, 40, 35, 65]
+        },
+        {
+            title: 'Nhà Lãnh đạo Tầm nhìn',
+            nature: 'Bạn sinh ra để nhìn thấy bức tranh lớn. Bạn muốn dẫn dắt mọi người đi tới một tương lai tốt đẹp hơn.',
+            strengths: ['Quyết đoán', 'Khả năng hoạch định'],
+            weaknesses: ['Có xu hướng áp đặt', 'Thiếu kiên nhẫn'],
+            career: ['Founder / CEO', 'Quản trị Bệnh viện', 'Strategist'],
+            demoScores: [65, 35, 55, 95, 80, 45, 55]
+        }
+    ];
+
+    function startCycleSamples() {
+        if (sampleInterval) clearInterval(sampleInterval);
+        let currentSampleIdx = 0;
+
+        const updateSample = () => {
+            if (isQuizCompleted) {
+                clearInterval(sampleInterval);
+                return;
+            }
+            updateResultsUI(sampleProfiles[currentSampleIdx], sampleProfiles[currentSampleIdx].demoScores, true);
+            currentSampleIdx = (currentSampleIdx + 1) % sampleProfiles.length;
+        };
+
+        updateSample();
+        sampleInterval = setInterval(updateSample, 3000);
+    }
+
+    // Start initial cycling
+    startCycleSamples();
+
     function generateFinalProfile() {
+        isQuizCompleted = true;
+        clearInterval(sampleInterval);
         const maxScoreIdx = scores.indexOf(Math.max(...scores));
         const profiles = [
             {
@@ -566,49 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
 
         const p = profiles[maxScoreIdx];
-
-        // Show title
-        const titleEl = document.getElementById('res-personality-title');
-        if (titleEl) {
-            titleEl.textContent = p.title;
-            titleEl.classList.remove('hidden');
-        }
-
-        document.getElementById('res-personality-nature').textContent = p.nature;
-
-        // Update Strengths
-        const strengthList = document.getElementById('res-personality-strengths');
-        strengthList.innerHTML = '';
-        p.strengths.forEach(s => {
-            const li = document.createElement('li');
-            li.textContent = s;
-            strengthList.appendChild(li);
-        });
-
-        // Update Weaknesses
-        const weaknessList = document.getElementById('res-personality-weaknesses');
-        weaknessList.innerHTML = '';
-        p.weaknesses.forEach(w => {
-            const li = document.createElement('li');
-            li.textContent = w;
-            weaknessList.appendChild(li);
-        });
-
-        // Update Career Tags
-        const tagContainer = document.getElementById('res-career-tags');
-        tagContainer.innerHTML = '';
-        p.career.forEach(c => {
-            const span = document.createElement('span');
-            span.textContent = c;
-            tagContainer.appendChild(span);
-        });
-
-        // Update result action button
-        const resActionBtn = document.getElementById('res-action-btn');
-        if (resActionBtn) {
-            resActionBtn.textContent = 'Làm lại';
-            resActionBtn.onclick = restartQuiz;
-        }
+        updateResultsUI(p, scores, false);
 
         // Feedback Logic
         const feedbackContainer = document.getElementById('res-feedback-container');
@@ -617,23 +729,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const yesBtn = document.getElementById('feedback-yes');
         const noBtn = document.getElementById('feedback-no');
 
-        feedbackContainer.classList.remove('hidden');
-        feedbackOptions.classList.remove('hidden');
-        feedbackResponse.classList.add('hidden');
+        if (yesBtn) {
+            yesBtn.onclick = () => {
+                feedbackOptions.classList.add('hidden');
+                feedbackResponse.textContent = 'Vậy thì cùng bắt tay vào hành động thôi nào!';
+                feedbackResponse.classList.remove('hidden');
+                feedbackResponse.style.color = 'var(--primary)';
+            };
+        }
 
-        yesBtn.onclick = () => {
-            feedbackOptions.classList.add('hidden');
-            feedbackResponse.textContent = 'Vậy thì cùng bắt tay vào hành động thôi nào!';
-            feedbackResponse.classList.remove('hidden');
-            feedbackResponse.style.color = 'var(--primary)';
-        };
-
-        noBtn.onclick = () => {
-            feedbackOptions.classList.add('hidden');
-            feedbackResponse.textContent = 'Bạn thấy có điểm nào chưa phù hợp, hãy nói với tôi nhé!';
-            feedbackResponse.classList.remove('hidden');
-            feedbackResponse.style.color = 'var(--text-muted)';
-        };
+        if (noBtn) {
+            noBtn.onclick = () => {
+                feedbackOptions.classList.add('hidden');
+                feedbackResponse.textContent = 'Bạn thấy có điểm nào chưa phù hợp, hãy nói với tôi nhé!';
+                feedbackResponse.classList.remove('hidden');
+                feedbackResponse.style.color = 'var(--text-muted)';
+            };
+        }
     }
 
     sendBtn.onclick = submitAnswer;

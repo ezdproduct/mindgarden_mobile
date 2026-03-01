@@ -1465,3 +1465,35 @@ footer {
 @media (max-width: 768px) {
     .showcase-grid { grid-template-columns: 1fr; }
 }
+
+/* Result Samples Preview Styles */
+.results-section.is-preview {
+    opacity: 0.85;
+    position: relative;
+}
+
+.results-section.is-preview::before {
+    content: " VÍ D? K?T QU?\;
+ position: absolute;
+ top: 2rem;
+ right: 2rem;
+ padding: 0.5rem 1rem;
+ background: var(--primary);
+ color: white;
+ font-size: 0.8rem;
+ font-weight: 800;
+ border-radius: 10px;
+ letter-spacing: 2px;
+ z-index: 10;
+ animation: pulse 2s infinite;
+}
+
+.flicker-transition {
+ animation: flickerEffect 0.5s ease;
+}
+
+@keyframes flickerEffect {
+ 0% { opacity: 0.5; transform: scale(0.99); }
+ 50% { opacity: 0.8; }
+ 100% { opacity: 1; transform: scale(1); }
+}
