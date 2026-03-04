@@ -2667,13 +2667,17 @@ footer {
 
     .system-msg {
         margin-right: auto !important;
-        /* Luôn ép sát bên trái */
-        width: 100% !important;
-        /* Để avatar và content dàn hàng ngang chuẩn */
+        width: auto !important;
+        /* Trả về auto để bong bóng không bị kéo dài vô lý */
+        max-width: 100% !important;
+        gap: 8px !important;
+        display: flex !important;
     }
 
-    .system-msg {
-        gap: 8px !important;
+    /* QUAN TRỌNG: Sửa lỗi 7/3 của khung chat phía trên */
+    .glass-quiz-card.is-split .quiz-chat-window {
+        width: 100% !important;
+        flex: 1 !important;
     }
 
     .system-avatar {
