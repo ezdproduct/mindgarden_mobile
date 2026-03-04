@@ -2566,10 +2566,16 @@ footer {
         align-items: center !important;
         justify-content: space-between !important;
         gap: 8px !important;
-        z-index: 100;
+        z-index: 2000;
+        /* Bump z-index to stay on top */
         margin-top: auto !important;
         box-sizing: border-box !important;
-        overflow: hidden !important;
+    }
+
+    /* Đảm bảo khung chat không bị trôi đi */
+    .quiz-input-area:focus-within {
+        position: sticky !important;
+        bottom: 0 !important;
     }
 
     .quiz-input-area:focus-within .input-top-actions {
@@ -2726,14 +2732,19 @@ footer {
         margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
+        position: fixed !important;
+        /* Fix toàn màn hình để không bị trôi */
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
         height: 100dvh !important;
         height: 100svh !important;
         width: 100% !important;
-        /* Ép đúng 100% */
-        overflow-x: hidden !important;
-        /* Ngăn trôi ngang */
-        overflow-y: hidden !important;
-        background-attachment: scroll !important;
+        overflow: hidden !important;
+        z-index: 1500;
+        background: #fff;
+        /* Nền trắng để không bị lọt hình nền ngoài */
     }
 
     .quiz-section .container {
