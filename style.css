@@ -2560,7 +2560,8 @@ footer {
         padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0));
         display: flex;
         flex-direction: column-reverse;
-        gap: 0.4rem;
+        gap: 0;
+        /* Dính liền vào khung soạn thảo */
     }
 
     /* Thu nhỏ khoảng dư thừa ở khung gõ chữ cho đỡ bị scroll dính chữ */
@@ -2583,8 +2584,9 @@ footer {
 
     .input-top-actions {
         position: static !important;
-        padding: 0 0.5rem;
-        /* Đẩy 2 nút sát xuống khung chữ */
+        padding: 4px 8px 0;
+        margin-bottom: 0;
+        /* Dính liền cạnh trên của khung soạn thảo */
     }
 
     /* Giảm padding và font chữ của bong bóng chat */
