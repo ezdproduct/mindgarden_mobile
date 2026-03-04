@@ -47,28 +47,34 @@
 
 .journey-section .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
-    width: 100%;
+    gap: 6rem;
     position: relative;
     z-index: 100;
 }
 
-.journey-header-stacked {
-    margin-bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    /* Giảm gap nhẹ */
+.journey-intro-text {
+    flex: 2.5;
+    text-align: left;
+    position: relative;
+    z-index: 101;
 }
 
-.journey-header-stacked .about-gradient-title {
-    font-size: 2.8rem;
-    /* Nhỏ lại xíu trên Desktop */
+.journey-intro-text h2 {
+    font-size: 3.2rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-family: var(--font-heading);
+    background: linear-gradient(135deg, #FFC107, #FF8A00, #D25F15);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: none;
+    font-weight: 800;
 }
 
-.journey-subtitle {
+.journey-intro-text p {
     font-size: 1.3rem;
     color: #1a1a1a;
     max-width: 1000px;
@@ -77,8 +83,7 @@
 }
 
 .journey-container-horizontal {
-    width: 100%;
-    max-width: 1000px;
+    flex: 1.2;
     position: relative;
     z-index: 20;
 }
