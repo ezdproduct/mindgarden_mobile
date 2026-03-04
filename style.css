@@ -782,6 +782,11 @@ body.no-scroll {
 }
 
 /* Chapter Tabs */
+.chapter-mobile-toggle-wrapper {
+    display: none;
+    /* Only show on mobile */
+}
+
 .quiz-chapters-tabs {
     display: flex;
     justify-content: space-between;
@@ -2589,5 +2594,44 @@ footer {
     .system-avatar {
         width: 36px !important;
         height: 36px !important;
+    }
+
+    /* Logic for Mobile Chapter Tabs Toggle */
+    .chapter-mobile-toggle-wrapper {
+        display: flex;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.5);
+        border-bottom: 1px solid rgba(255, 142, 113, 0.1);
+        padding: 4px 0;
+    }
+
+    .chapter-mobile-toggle {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        transition: transform 0.3s;
+    }
+
+    .chapter-mobile-toggle i {
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .chapter-mobile-toggle.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Override tabs display on mobile to be hidden and togglable */
+    .quiz-chapters-tabs {
+        display: none !important;
+    }
+
+    .quiz-chapters-tabs.mobile-visible {
+        display: flex !important;
+        border-bottom: 1px solid rgba(255, 142, 113, 0.1);
+        animation: slideDownFade 0.3s ease;
     }
 }

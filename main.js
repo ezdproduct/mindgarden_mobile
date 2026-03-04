@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hintBtn = document.getElementById('show-hints-btn');
     const showAnalysisBtn = document.getElementById('show-analysis-btn');
     const chapterTabs = document.getElementById('chapter-tabs');
+    const chapterMobileToggle = document.getElementById('chapter-mobile-toggle');
     const startScreen = document.getElementById('quiz-start-screen');
     const quizSection = document.getElementById('test');
 
@@ -1055,6 +1056,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!currentAnalysisChart) initCurrentChart();
             updateChart(); // make sure it has latest data
             analysisModal.classList.remove('hidden');
+        };
+    }
+
+    if (chapterMobileToggle && chapterTabs) {
+        chapterMobileToggle.onclick = () => {
+            chapterMobileToggle.classList.toggle('active');
+            chapterTabs.classList.toggle('mobile-visible');
         };
     }
 
