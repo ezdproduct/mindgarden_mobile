@@ -2602,7 +2602,7 @@ footer {
         justify-content: center;
         background: rgba(255, 255, 255, 0.5);
         border-bottom: 1px solid rgba(255, 142, 113, 0.1);
-        padding: 4px 0;
+        padding: 0;
     }
 
     .chapter-mobile-toggle {
@@ -2612,15 +2612,14 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 4px;
-        transition: transform 0.3s;
+        padding: 2px 20px;
     }
 
-    .chapter-mobile-toggle i {
+    .chapter-mobile-toggle svg {
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .chapter-mobile-toggle.active i {
+    .chapter-mobile-toggle.active svg {
         transform: rotate(180deg);
     }
 
