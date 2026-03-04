@@ -2641,13 +2641,27 @@ footer {
     /* Giảm padding và font chữ của bong bóng chat */
     .chat-msg {
         font-size: 0.95rem !important;
-        max-width: 85% !important;
-        /* Mở rộng tối đa chiều ngang trên mobile */
+        max-width: 90% !important;
+        /* Mở rộng tối đa có thể để đọc chữ dễ hơn */
+        width: auto !important;
     }
 
     .system-msg-content,
     .user-msg {
         padding: 0.8rem 1.2rem !important;
+        width: auto !important;
+    }
+
+    .user-msg {
+        margin-left: auto !important;
+        /* Luôn ép sát bên phải */
+    }
+
+    .system-msg {
+        margin-right: auto !important;
+        /* Luôn ép sát bên trái */
+        width: 100% !important;
+        /* Để avatar và content dàn hàng ngang chuẩn */
     }
 
     .system-msg {
