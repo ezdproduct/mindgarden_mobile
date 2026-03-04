@@ -2780,8 +2780,8 @@ footer {
 
     .glass-quiz-card {
         margin: 0 !important;
-        padding: 10px 15px 0 15px !important;
-        /* Thêm lại padding cho các thành phần bên trong không bị sát lề quá */
+        padding: 10px 0 0 0 !important;
+        /* Padding ngang được dời vào từng component con để input chạm lề */
         flex: 1 !important;
         width: 100% !important;
         height: 100% !important;
@@ -2792,12 +2792,15 @@ footer {
         box-sizing: border-box !important;
     }
 
-    /* Reset cho các thành phần bên trong Card */
+    /* Trả lại padding ngang cho các thành phần header */
     .quiz-header,
     .quiz-progress-container {
         width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+        box-sizing: border-box !important;
     }
 
     .quiz-body-wrapper {
