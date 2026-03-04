@@ -226,7 +226,7 @@
         text-align: center !important;
         margin-bottom: 50px !important;
         padding: 0 10px !important;
-        /* Giảm padding lề */
+        /* Giảm padding ngang */
     }
 
     .journey-intro-text h2 {
@@ -266,9 +266,9 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        /* Giảm gap nhẹ */
-        padding: 0 5px;
-        /* Giảm padding sát lề hơn */
+        /* Giảm nhẹ gap để ảnh to hơn */
+        padding: 0 8px;
+        /* Giảm padding ngang tối đa */
     }
 
     /* Organic Blob Shape cho ảnh */
