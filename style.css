@@ -2562,24 +2562,28 @@ footer {
         /* Đảm bảo có nền để không bị xuyên thấu chat */
         border-top: 1px solid rgba(0, 0, 0, 0.05);
         padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0)) !important;
-        display: flex;
+        display: flex !important;
         flex-direction: row !important;
-        align-items: center;
-        /* Ngang hàng tuyệt đối */
+        flex-wrap: nowrap !important;
+        /* Ngăn rớt dòng */
+        align-items: center !important;
+        justify-content: space-between !important;
         gap: 8px !important;
         z-index: 2000;
         margin: 0 !important;
     }
 
-    /* Hide icons when gõ (focused) */
     .quiz-input-area:focus-within .input-top-actions {
         display: none !important;
     }
 
+    /* Vùng 7 phần bên phải */
     .quiz-input-main {
-        flex: 0 0 calc(70% - 8px);
-        /* Chiếm 7 phần */
+        flex: 0 0 calc(75% - 8px) !important;
         min-width: 0;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
     }
 
     /* Khi đang gõ: Khung gõ chiếm trọn 100% */
@@ -2607,17 +2611,25 @@ footer {
         height: 36px !important;
     }
 
+    /* Vùng 3 phần bên trái chứa 2 icon */
     .input-top-actions {
-        flex: 0 0 30%;
-        /* Chiếm 3 phần */
-        display: flex;
+        position: relative !important;
+        /* Quan trọng: Reset từ absolute của desktop */
+        top: 0 !important;
+        /* Reset từ -2.8rem */
+        left: 0 !important;
+        flex: 0 0 25% !important;
+        /* Chiếm khoảng 3 phần */
+        display: flex !important;
         flex-direction: row;
-        justify-content: center;
-        /* Căn giữa 2 icon trong vùng 3 phần */
-        gap: 8px !important;
-        padding-bottom: 0 !important;
+        justify-content: flex-start;
+        /* Sát lề trái */
+        align-items: center;
+        gap: 6px !important;
+        padding: 0 !important;
         margin: 0 !important;
         flex-shrink: 0;
+        z-index: 10;
     }
 
     /* Giảm padding và font chữ của bong bóng chat */
