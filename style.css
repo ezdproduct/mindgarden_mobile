@@ -2559,7 +2559,10 @@ footer {
         margin-top: auto;
         flex-shrink: 0;
         z-index: 100;
-        padding-bottom: env(safe-area-inset-bottom, 0);
+        padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0));
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.4rem;
     }
 
     /* Thu nhỏ khoảng dư thừa ở khung gõ chữ cho đỡ bị scroll dính chữ */
@@ -2581,7 +2584,8 @@ footer {
     }
 
     .input-top-actions {
-        top: -2.0rem !important;
+        position: static !important;
+        padding: 0 0.5rem;
         /* Đẩy 2 nút sát xuống khung chữ */
     }
 
@@ -2648,8 +2652,6 @@ footer {
     .hint-btn {
         padding: 0.25rem 0.6rem !important;
         font-size: 0.7rem !important;
-        margin-bottom: -5px;
-        /* Giảm margin bottom */
     }
 
     .hint-btn i,
