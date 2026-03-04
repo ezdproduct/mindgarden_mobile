@@ -2187,26 +2187,26 @@ footer {
         /* Huge breathing room */
     }
 
-    /* Hero Section - flush left, giant typography */
+    /* Hero Section - standard mobile sizes and centered */
     .hero {
-        align-items: flex-end;
-        /* Push content down */
+        align-items: center;
+        /* Center content instead of flex-end */
     }
 
     .hero-content {
         width: 100%;
-        padding: 0 24px 60px 24px;
-        text-align: left;
-        /* Strict left alignment */
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+        padding: 100px 20px 40px 20px;
+        /* Provide padding-top to avoid overlapping with the navbar */
+        text-align: center;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, transparent 80%);
     }
 
     .hero-text-centered h1 {
-        font-size: 3.2rem !important;
-        line-height: 1.05 !important;
-        letter-spacing: -1.5px !important;
-        margin-bottom: 24px;
-        text-align: left !important;
+        font-size: 2.2rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.5px !important;
+        margin-bottom: 16px;
+        text-align: center !important;
     }
 
     .badge {
@@ -2217,29 +2217,29 @@ footer {
     }
 
     .hero-text-centered p {
-        font-size: 1.15rem;
-        margin-bottom: 40px;
-        line-height: 1.4;
-        text-align: left !important;
-        max-width: 90%;
+        font-size: 0.95rem !important;
+        margin-bottom: 32px;
+        line-height: 1.5 !important;
+        text-align: center !important;
+        max-width: 100%;
     }
 
     .hero-btns-centered {
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
         width: 100%;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .hero-btns-centered a {
         width: 100%;
-        max-width: none;
+        max-width: 320px;
         text-align: center;
-        padding: 18px 24px;
-        /* thick modern buttons */
-        border-radius: 8px !important;
-        /* less rounded, more brutalist/modern */
-        font-size: 1rem;
+        padding: 14px 24px;
+        /* Standard mobile button thickness */
+        border-radius: 50px !important;
+        /* Pill shape */
+        font-size: 0.95rem;
     }
 
     .landscape-img {
@@ -2394,8 +2394,10 @@ footer {
     .result-actions .btn-primary,
     .result-actions .btn-secondary {
         width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
         text-align: center;
-        padding: 18px 24px;
-        border-radius: 8px !important;
+        padding: 14px 24px;
+        border-radius: 50px !important;
     }
 }
