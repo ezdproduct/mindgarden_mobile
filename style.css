@@ -2634,4 +2634,15 @@ footer {
         border-bottom: 1px solid rgba(255, 142, 113, 0.1);
         animation: slideDownFade 0.3s ease;
     }
+
+    /* Thu gọn nút "Xem gợi ý" và "Phân tích tạm thời" trên mobile */
+    .hint-btn {
+        padding: 0.35rem 0.75rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .hint-btn i {
+        display: none !important;
+        /* Bỏ icon theo yêu cầu */
+    }
 }
