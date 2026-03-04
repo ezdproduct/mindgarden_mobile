@@ -209,17 +209,23 @@
 
 .journey-zigzag-desktop .zigzag-info h5 {
     font-size: 1.8rem;
-    color: #D25F15;
+    color: #8B4513;
+    /* Màu nâu đậm hơn (SaddleBrown) để nổi bật trên nền sáng */
     margin-bottom: 10px;
     font-family: var(--font-heading);
     font-weight: 800;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
+    /* Tạo viền sáng mờ quanh chữ */
 }
 
 .journey-zigzag-desktop .zigzag-info p {
     font-size: 1.1rem;
     line-height: 1.5;
-    color: #444;
+    color: #2D3436;
+    /* Màu xám đen cục kỳ sắc nét */
     margin-bottom: 15px;
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 .journey-zigzag-desktop .step-link {
@@ -426,17 +432,22 @@
 
     .zigzag-info h5 {
         font-size: 1.25rem;
-        color: #D25F15;
+        color: #8B4513;
+        /* Màu nâu đậm gỗ nổi bật */
         margin-bottom: 6px;
         font-family: var(--font-heading);
         font-weight: 800;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .zigzag-info p {
         font-size: 0.9rem;
         line-height: 1.4;
-        color: #555;
+        color: #1A1A1A;
+        /* Đen hẳn để không bị chìm */
         margin-bottom: 12px;
+        font-weight: 500;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
     }
 
     .zigzag-info .step-link {
