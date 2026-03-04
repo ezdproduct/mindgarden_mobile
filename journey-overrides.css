@@ -59,7 +59,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    /* Giảm gap nhẹ */
+}
+
+.journey-header-stacked .about-gradient-title {
+    font-size: 2.8rem;
+    /* Nhỏ lại xíu trên Desktop */
 }
 
 .journey-subtitle {
@@ -208,7 +214,12 @@
 
     .journey-header-stacked {
         margin-bottom: 40px !important;
-        gap: 1.5rem !important;
+        gap: 1.2rem !important;
+    }
+
+    .journey-header-stacked .about-gradient-title {
+        font-size: 1.8rem !important;
+        /* Nhỏ lại tinh tế trên Mobile */
     }
 
     .journey-subtitle {
