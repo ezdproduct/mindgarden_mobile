@@ -2584,9 +2584,11 @@ footer {
 
     .input-top-actions {
         position: static !important;
-        padding: 4px 8px 0;
-        margin-bottom: 0;
-        /* Dính liền cạnh trên của khung soạn thảo */
+        padding: 0 8px;
+        margin-bottom: -16px;
+        /* Đè lên viền trên của khung soạn thảo */
+        z-index: 10;
+        position: relative !important;
     }
 
     /* Giảm padding và font chữ của bong bóng chat */
