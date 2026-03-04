@@ -1111,10 +1111,16 @@ body.no-scroll {
     transition: var(--transition);
 }
 
-.hint-btn {
+.input-top-actions {
     position: absolute;
     top: -2.8rem;
     left: 0.5rem;
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+.hint-btn {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     color: var(--primary);
@@ -1126,7 +1132,11 @@ body.no-scroll {
     font-weight: 700;
     gap: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    z-index: 5;
+}
+
+.show-analysis-mobile-btn {
+    display: none !important;
+    /* Hide by default on desktop */
 }
 
 .hint-btn:hover {
@@ -2465,5 +2475,15 @@ footer {
 
     .quiz-menu-dropdown .quiz-control-btn.exit:hover {
         background: rgba(255, 82, 82, 0.1) !important;
+    }
+
+    /* Hide the side panel entirely on mobile */
+    .analysis-side-panel {
+        display: none !important;
+    }
+
+    /* Show the mobile version of the analysis button */
+    .show-analysis-mobile-btn {
+        display: flex !important;
     }
 }

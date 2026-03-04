@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-answer');
     const sendBtn = document.getElementById('send-btn');
     const hintBtn = document.getElementById('show-hints-btn');
+    const showAnalysisBtn = document.getElementById('show-analysis-btn');
     const chapterTabs = document.getElementById('chapter-tabs');
     const startScreen = document.getElementById('quiz-start-screen');
     const quizSection = document.getElementById('test');
@@ -1048,6 +1049,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     exitBtn.onclick = exitChat;
     closeModal.onclick = () => analysisModal.classList.add('hidden');
+
+    if (showAnalysisBtn) {
+        showAnalysisBtn.onclick = () => {
+            if (!currentAnalysisChart) initCurrentChart();
+            updateChart(); // make sure it has latest data
+            analysisModal.classList.remove('hidden');
+        };
+    }
 
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('.navbar');
