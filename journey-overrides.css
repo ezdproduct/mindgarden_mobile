@@ -200,3 +200,75 @@
         margin: 0 auto;
     }
 }
+
+@media (max-width: 768px) {
+    .journey-section {
+        padding: 80px 0 !important;
+        /* Standardized whitespace */
+    }
+
+    .journey-section .container {
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+
+    .journey-intro-text {
+        text-align: left !important;
+        /* Left alignment for intro */
+    }
+
+    .journey-intro-text h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.15 !important;
+        letter-spacing: -1px;
+    }
+
+    .journey-intro-text p {
+        font-size: 1.15rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .journey-steps-row {
+        padding-left: 0 !important;
+        gap: 16px !important;
+        /* Minimal gap between lists */
+    }
+
+    .journey-scan-arrow {
+        display: none !important;
+    }
+
+    .journey-step-box {
+        flex-direction: row !important;
+        /* Horizontal stacking! */
+        text-align: left !important;
+        gap: 20px !important;
+        padding: 24px !important;
+        margin: 0 !important;
+        /* Don't auto center */
+        border-radius: 12px !important;
+        /* Sharper */
+        border: none !important;
+        background: #fdfdfd !important;
+        /* minimal */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    }
+
+    .step-img-wrap {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 8px !important;
+        /* Clean square */
+        clip-path: none !important;
+    }
+
+    .step-info h4 {
+        font-size: 1.25rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .step-info p {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+    }
+}
