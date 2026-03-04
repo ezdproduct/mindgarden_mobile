@@ -1748,7 +1748,9 @@ footer {
 
 @media (max-width: 768px) {
     .glass-quiz-card.fullscreen {
-        padding: 1.5rem;
+        padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+        height: 100dvh;
+        /* use dynamic viewport height for keyboard support */
     }
 
     .hero-text-centered h1 {
@@ -2545,5 +2547,13 @@ footer {
 
     .chapter-name {
         font-size: 0.85rem !important;
+    }
+
+    /* Đảm bảo khung nhập liệu luôn nằm sát dưới cùng và không bị mất */
+    .quiz-input-area {
+        margin-top: auto;
+        flex-shrink: 0;
+        z-index: 100;
+        padding-bottom: env(safe-area-inset-bottom, 0);
     }
 }
