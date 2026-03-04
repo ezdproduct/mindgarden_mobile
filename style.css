@@ -2628,10 +2628,13 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2px 20px;
+        padding: 0 20px;
+        min-height: 24px;
     }
 
     .chapter-mobile-toggle svg {
+        width: 20px;
+        height: 20px;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -2646,6 +2649,8 @@ footer {
 
     .quiz-chapters-tabs.mobile-visible {
         display: flex !important;
+        padding: 0.25rem 1rem !important;
+        gap: 0.5rem !important;
         border-bottom: 1px solid rgba(255, 142, 113, 0.1);
         animation: slideDownFade 0.3s ease;
     }
