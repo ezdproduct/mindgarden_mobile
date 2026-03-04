@@ -212,6 +212,12 @@
         /* Trắng sáng cho giống hình mẫu */
     }
 
+    .journey-section .container {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
     .journey-section::before,
     .journey-section::after {
         display: none !important;
