@@ -54,36 +54,16 @@
     z-index: 100;
 }
 
-.journey-intro-text {
-    flex: 2.5;
-    /* Expanded to prevent title from wrapping inappropriately */
-    text-align: left;
-    position: relative;
-    z-index: 101;
+.journey-intro-split {
+    margin-bottom: 60px;
+    align-items: center;
 }
 
-.journey-intro-text h2 {
-    font-size: 3.2rem;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    font-family: var(--font-heading);
-    /* High Contrast Sunset Gradient */
-    background: linear-gradient(135deg, #FFC107, #FF8A00, #D25F15);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: none;
-    font-weight: 800;
-}
-
-.journey-intro-text p {
+.journey-subtitle {
     font-size: 1.3rem;
     color: #1a1a1a;
-    /* Darkest for readability */
     max-width: 1000px;
-    /* Expanded for better flow */
     font-weight: 400;
-    /* Normal weight for contrast with heading */
     line-height: 1.6;
 }
 
@@ -222,16 +202,16 @@
         display: none !important;
     }
 
-    .journey-intro-text {
-        text-align: center !important;
-        margin-bottom: 50px !important;
-        padding: 0 10px !important;
-        /* Giảm padding ngang */
+    .journey-intro-split {
+        margin-bottom: 40px !important;
     }
 
-    .journey-intro-text h2 {
-        font-size: 2.2rem !important;
-        margin-bottom: 1rem !important;
+    .journey-subtitle {
+        font-size: 1.15rem !important;
+        line-height: 1.5 !important;
+        text-align: left !important;
+        margin-top: 15px !important;
+        display: block !important;
     }
 
     .journey-zigzag-mobile {
