@@ -2585,7 +2585,7 @@ footer {
     .input-top-actions {
         position: static !important;
         padding: 0 8px;
-        margin-bottom: -8px;
+        margin-bottom: 2px;
         /* Chỉ đè lên viền mỏng, không che placeholder */
         z-index: 10;
         position: relative !important;
