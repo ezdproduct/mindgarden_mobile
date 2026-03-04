@@ -2564,15 +2564,25 @@ footer {
 
     /* Thu nhỏ khoảng dư thừa ở khung gõ chữ cho đỡ bị scroll dính chữ */
     .input-row {
-        padding: 0.5rem !important;
-        gap: 0.5rem !important;
+        padding: 0.35rem 0.5rem !important;
+        gap: 0.4rem !important;
     }
 
     #user-answer {
-        font-size: 0.95rem !important;
-        padding: 0.5rem !important;
-        height: 54px !important;
-        /* Cao lên chút để đủ ôm trọn 2 dòng text */
+        font-size: 0.85rem !important;
+        padding: 0.4rem !important;
+        height: 42px !important;
+        /* Vừa đủ ôm 1-2 dòng text */
+    }
+
+    .send-btn {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .input-top-actions {
+        top: -2.0rem !important;
+        /* Đẩy 2 nút sát xuống khung chữ */
     }
 
     /* Giảm padding và font chữ của bong bóng chat */
@@ -2636,11 +2646,14 @@ footer {
 
     /* Thu gọn nút "Xem gợi ý" và "Phân tích tạm thời" trên mobile */
     .hint-btn {
-        padding: 0.35rem 0.75rem !important;
-        font-size: 0.75rem !important;
+        padding: 0.25rem 0.6rem !important;
+        font-size: 0.7rem !important;
+        margin-bottom: -5px;
+        /* Giảm margin bottom */
     }
 
-    .hint-btn i {
+    .hint-btn i,
+    .hint-btn svg {
         display: none !important;
         /* Bỏ icon theo yêu cầu */
     }
