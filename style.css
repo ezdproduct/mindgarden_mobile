@@ -2563,8 +2563,12 @@ footer {
     .quiz-chapters-tabs {
         justify-content: flex-start !important;
         overflow-x: auto;
-        padding: 0.5rem 1rem !important;
-        gap: 1.5rem !important;
+        white-space: nowrap;
+        /* Đảm bảo các chương không bị ngắt dòng */
+        padding: 0.5rem 1.5rem !important;
+        /* Tăng padding để thoáng hơn */
+        gap: 2.2rem !important;
+        /* Dãn ngang các chương ra một chút */
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
