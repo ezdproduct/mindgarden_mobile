@@ -2749,7 +2749,7 @@ footer {
         flex-shrink: 0;
     }
 
-    .quiz-section {
+    .quiz-section:not(.hidden) {
         padding: 0 !important;
         margin: 0 !important;
         display: flex !important;
