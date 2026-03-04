@@ -138,44 +138,55 @@
 
                 <!-- Web/Desktop: Existing row -->
                 <div class="journey-container-horizontal desktop-only">
-                    <div class="journey-steps-row">
-                        <div class="journey-scan-arrow" id="journey-scan-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 4l14 8-14 8V4z" />
+                    <!-- Desktop Zigzag Version -->
+                    <div class="journey-zigzag-desktop">
+                        <div class="zigzag-path-svg">
+                            <svg viewBox="0 0 100 300" preserveAspectRatio="none">
+                                <path d="M70,10 C70,50 30,50 30,100 C30,150 70,150 70,200 C70,250 30,250 30,290"
+                                    fill="none" stroke="rgba(210, 95, 21, 0.2)" stroke-width="1"
+                                    stroke-dasharray="3,3" />
                             </svg>
                         </div>
-                        <div class="journey-step-box">
-                            <div class="step-img-wrap organic-blob-style">
-                                <img src="journey_step_1.png" alt="Kết nối">
-                            </div>
-                            <div class="step-info">
-                                <h4>Kết nối Nội tại</h4>
-                                <p>Giải mã tín hiệu tiềm thức, thấu hiểu chính mình.</p>
-                                <a href="javascript:void(0)" class="step-link" onclick="initChat()">Bắt đầu ngay <i
-                                        data-lucide="chevron-right"></i></a>
+
+                        <div class="zigzag-step step-1">
+                            <div class="zigzag-content">
+                                <div class="organic-image-wrap">
+                                    <img src="journey_step_1.png" alt="Kết nối">
+                                </div>
+                                <div class="zigzag-info">
+                                    <h5>Kết nối Nội tại</h5>
+                                    <p>Giải mã tín hiệu tiềm thức, thấu hiểu chính mình.</p>
+                                    <a href="javascript:void(0)" class="step-link" onclick="initChat()">Bắt đầu ngay <i
+                                            data-lucide="chevron-right"></i></a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="journey-step-box">
-                            <div class="step-img-wrap organic-blob-style">
-                                <img src="journey_step_2.png" alt="Thử thách">
-                            </div>
-                            <div class="step-info">
-                                <h4>Thử thách</h4>
-                                <p>Bộc lộ tài năng qua trò chơi tương tác.</p>
-                                <a href="#game" class="step-link">Trải nghiệm <i data-lucide="chevron-right"></i></a>
+                        <div class="zigzag-step step-2 alternate">
+                            <div class="zigzag-content">
+                                <div class="zigzag-info">
+                                    <h5>Thử thách</h5>
+                                    <p>Bộc lộ tài năng qua trò chơi tương tác.</p>
+                                    <a href="#game" class="step-link">Trải nghiệm <i
+                                            data-lucide="chevron-right"></i></a>
+                                </div>
+                                <div class="organic-image-wrap">
+                                    <img src="journey_step_2.png" alt="Thử thách">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="journey-step-box">
-                            <div class="step-img-wrap organic-blob-style">
-                                <img src="journey_step_3.png" alt="Định hướng">
-                            </div>
-                            <div class="step-info">
-                                <h4>Định hướng</h4>
-                                <p>Sở hữu bản phân tích tiềm năng và gợi ý hướng đi sự nghiệp phù hợp.</p>
-                                <a href="#results" class="step-link">Xem lối đi <i data-lucide="chevron-right"></i></a>
+                        <div class="zigzag-step step-3">
+                            <div class="zigzag-content">
+                                <div class="organic-image-wrap">
+                                    <img src="journey_step_3.png" alt="Định hướng">
+                                </div>
+                                <div class="zigzag-info">
+                                    <h5>Định hướng</h5>
+                                    <p>Gợi ý những hướng đi phù hợp với tiềm năng bản thân.</p>
+                                    <a href="#results" class="step-link">Xem lối đi <i
+                                            data-lucide="chevron-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
