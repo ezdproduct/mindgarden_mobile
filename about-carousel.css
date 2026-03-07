@@ -77,8 +77,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 270px;
-    height: 270px;
+    width: 320px;
+    height: 320px;
     transform: translate(-50%, -50%);
     background: #ffffff;
     border-radius: 50%;
@@ -124,18 +124,18 @@
     top: 50%;
     left: 50%;
     /*
-      spacer(145px) = center-radius(135px) + gap(10px)
+      spacer(170px) = center-radius(160px) + gap(10px)
       dot(46px) + inner-gap(16px) + card(240px)
-      Total = 145 + 46 + 16 + 240 = 447px → use 460px
+      Total = 170 + 46 + 16 + 240 = 472px → use 490px
     */
-    width: 460px;
+    width: 490px;
     height: 0;
     transform-origin: 0% 0%;
     display: flex;
     align-items: center;
     pointer-events: none;
     /* Push content past center circle radius */
-    padding-left: 145px;
+    padding-left: 170px;
     box-sizing: border-box;
 }
 
