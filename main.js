@@ -855,22 +855,23 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsSection.classList.remove('is-preview');
         }
 
-        // Add slide-out then slide-in effect
+        // Slide-out left, update content while off-screen, then slide-in from right
         const resContent = document.querySelector('.results-grid');
         if (resContent) {
             resContent.classList.remove('slide-in-result');
             resContent.classList.add('slide-out-result');
-            // Wait for slide-out to finish, then update content and slide-in
+            // After slide-out completes (500ms), swap content and slide back in
             setTimeout(() => {
+                // Content will be updated by the code below while off-screen
                 resContent.classList.remove('slide-out-result');
                 resContent.classList.add('slide-in-result');
-            }, 400);
+            }, 500);
         }
 
         // Update Chart
         if (chart) {
             chart.data.datasets[0].data = finalScores || [80, 80, 80, 80, 80, 80, 80];
-            chart.update('none'); // Update without animation for flicker feel
+            chart.update('none');
         }
 
         // Show title
