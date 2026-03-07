@@ -6,7 +6,7 @@
     padding: 120px 0 80px;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('15.png') no-repeat center center / cover;
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('28.png') no-repeat center center / cover;
     color: #1a1a1a;
     position: relative;
     overflow: hidden;
@@ -323,8 +323,7 @@
 
     .journey-section {
         padding: 60px 0 100px !important;
-        background: #fff !important;
-        /* Trắng sáng cho giống hình mẫu */
+        background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('28.png') no-repeat center center / cover !important;
     }
 
     .journey-section .container {
