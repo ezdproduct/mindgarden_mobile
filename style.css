@@ -354,6 +354,12 @@ select {
     align-items: center;
 }
 
+.hero-btns-centered .btn-primary {
+    padding: 1.15rem 4rem;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+}
+
 /* Journey Section */
 .journey-section {
     padding: 120px 0;
