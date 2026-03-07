@@ -104,10 +104,9 @@
 }
 
 .petal-core-title span {
-    background: linear-gradient(135deg, #FFC107, #FF8A00, #D25F15);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FF8E71;
+    -webkit-text-fill-color: #FF8E71;
+    font-family: var(--font-logo);
 }
 
 /* ===== ARMS ===== */
