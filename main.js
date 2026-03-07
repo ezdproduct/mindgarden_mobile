@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('progress-text').textContent = `${percent}%`;
 
         // Update Chapter Tabs based on currentIdx (Matching questions.js structure)
-        // Chapter 1: 0-29 (Tình huống), Chapter 2: 30-54 (Trăn trở), Chapter 3: 55-74 (Phép màu), Chapter 4: 75-99 (Lựa chọn)
+        // Chapter 1: 0-29 (Tình huống), Chapter 2: 30-54 (Trăn trở), Chapter 3: 55-74 (Khát vọng), Chapter 4: 75-99 (Lựa chọn)
         let currentChapter = 1;
         if (currentIdx >= 75) currentChapter = 4;
         else if (currentIdx >= 55) currentChapter = 3;

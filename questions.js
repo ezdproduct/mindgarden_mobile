@@ -564,7 +564,7 @@ const questionsData = [
             { label: 'D', text: "Giống nhà vua/lãnh đạo phải hy sinh cá nhân vì đại cuộc.", weight: [0, 0, 0, 15, 0, 0, 5] }
         ]
     },
-    // PHẦN 3: CÂU HỎI TƯỞNG TƯỢNG & PHÉP MÀU (20 câu)
+    // PHẦN 3: CÂU HỎI TƯỞNG TƯỢNG & KHÁT VỌNG (20 câu)
     {
         text: "Giả sử đêm nay có một phép màu xảy ra và mọi rào cản biến mất. Sáng mai thức dậy, dấu hiệu nào cho bạn biết mình đang thực hiện đúng đam mê?",
         hints: [
