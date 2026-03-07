@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const percent = Math.round((chapterIdx / chapterTotal) * 100);
         document.getElementById('quiz-progress-fill').style.width = `${percent}%`;
-        document.getElementById('progress-text').textContent = `Chương ${currentChapter}: ${percent}%`;
+        document.getElementById('progress-text').textContent = `${percent}%`;
 
         // Update Chapter Tabs
         document.querySelectorAll('.chapter-tab').forEach(tab => {
