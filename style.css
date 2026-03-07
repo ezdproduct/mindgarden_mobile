@@ -1498,26 +1498,8 @@ body.no-scroll {
     align-items: start;
     position: relative;
     z-index: 100;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.results-grid.slide-out-result {
-    transform: translateX(0);
-}
-
-.results-grid.slide-in-result {
-    animation: nudgeBack 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes nudgeBack {
-    0% {
-        transform: translateX(40px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
 
 .chart-container {
     padding: 3.5rem;

@@ -855,18 +855,6 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsSection.classList.remove('is-preview');
         }
 
-        // Slide-out left, update content while off-screen, then slide-in from right
-        const resContent = document.querySelector('.results-grid');
-        if (resContent) {
-            resContent.classList.remove('slide-in-result');
-            resContent.classList.add('slide-out-result');
-            // After slide-out completes (500ms), swap content and slide back in
-            setTimeout(() => {
-                // Content will be updated by the code below while off-screen
-                resContent.classList.remove('slide-out-result');
-                resContent.classList.add('slide-in-result');
-            }, 500);
-        }
 
         // Update Chart
         if (chart) {
