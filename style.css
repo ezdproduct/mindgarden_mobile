@@ -1498,6 +1498,28 @@ body.no-scroll {
     align-items: start;
     position: relative;
     z-index: 100;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.results-grid.slide-out-result {
+    transform: translateX(-60px);
+    opacity: 0;
+}
+
+.results-grid.slide-in-result {
+    animation: slideInFromRight 0.5s ease forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(60px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .chart-container {

@@ -855,12 +855,16 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsSection.classList.remove('is-preview');
         }
 
-        // Add flicker effect
+        // Add slide-out then slide-in effect
         const resContent = document.querySelector('.results-grid');
         if (resContent) {
-            resContent.classList.remove('flicker-transition');
-            void resContent.offsetWidth; // Trigger reflow
-            resContent.classList.add('flicker-transition');
+            resContent.classList.remove('slide-in-result');
+            resContent.classList.add('slide-out-result');
+            // Wait for slide-out to finish, then update content and slide-in
+            setTimeout(() => {
+                resContent.classList.remove('slide-out-result');
+                resContent.classList.add('slide-in-result');
+            }, 400);
         }
 
         // Update Chart
