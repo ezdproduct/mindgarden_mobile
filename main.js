@@ -474,15 +474,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         };
                     }
 
-                    // View analysis in sidebar
-                    const viewAnalysisBtn = element.querySelector('.view-analysis-btn');
-                    if (viewAnalysisBtn) {
-                        viewAnalysisBtn.onclick = (e) => {
+                    // View analysis for chapter
+                    const viewChapterAnalysisBtn = element.querySelector('.view-chapter-analysis-btn');
+                    if (viewChapterAnalysisBtn) {
+                        viewChapterAnalysisBtn.onclick = (e) => {
                             e.preventDefault();
-                            activateSplitView();
-                            // Scroll side panel into view for mobile if needed
-                            const sidePanel = document.getElementById('analysis-side-panel');
-                            if (sidePanel) sidePanel.scrollIntoView({ behavior: 'smooth' });
+                            // The onclick is already in the HTML as showChapterAnalysis(chapterNum)
+                            // But since we inject HTML, sometimes inline handlers need a nudge or we do it here
+                            const chMatch = html.match(/showChapterAnalysis\((\d+)\)/);
+                            if (chMatch) showChapterAnalysis(parseInt(chMatch[1]));
                         };
                     }
 
@@ -734,6 +734,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply weights and update chart
         if (lastAppliedWeight) {
             lastAppliedWeight.forEach((w, i) => scores[i] += w);
+
+            // Track chapter specific scores
+            const chNum = getChapterNumber(targetIdx);
+            lastAppliedWeight.forEach((w, i) => chapterScores[chNum][i] += w);
+
             updateChart();
         }
 
@@ -786,13 +791,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800 * dFactor);
     }
 
+    let chapterScores = { 1: [0, 0, 0, 0, 0, 0, 0], 2: [0, 0, 0, 0, 0, 0, 0], 3: [0, 0, 0, 0, 0, 0, 0], 4: [0, 0, 0, 0, 0, 0, 0] };
+
+    function getChapterNumber(idx) {
+        if (isTestMode) {
+            if (idx < 2) return 1;
+            if (idx < 4) return 2;
+            if (idx < 6) return 3;
+            return 4;
+        } else {
+            if (idx < 30) return 1;
+            if (idx < 55) return 2;
+            if (idx < 75) return 3;
+            return 4;
+        }
+    }
+
     function showChapterCompletion(chapterNum) {
         const nextChapter = chapterNum + 1;
-        const msg = `Chúc mừng bạn đã hoàn thành xong chương ${chapterNum}. Bạn có thể xem kết quả phân tích về bản thân trong chương này và đến với hành trình tiếp theo!<br><div class="chapter-completion-btns"><a href="#" class="btn-chat-primary view-analysis-btn">Xem phân tích</a><a href="#" class="btn-chat-primary next-chapter-btn">Đến chương ${nextChapter}</a></div>`;
+        const msg = `Chúc mừng bạn đã hoàn thành xong chương ${chapterNum}. Bạn có thể xem kết quả phân tích về bản thân trong chương này và đến với hành trình tiếp theo!<br><div class="chapter-completion-btns">
+            <button class="btn-chat-primary view-chapter-analysis-btn" onclick="showChapterAnalysis(${chapterNum})">Xem phân tích</button>
+            <button class="btn-chat-primary next-chapter-btn">Đến chương ${nextChapter}</button>
+        </div>`;
 
         inputArea.classList.add('hidden');
         appendMessage('system', msg);
     }
+
+    const chapterAnalysisModal = document.getElementById('chapter-analysis-modal');
+    let chapterRadarChart;
+
+    window.showChapterAnalysis = function (chapterNum) {
+        const modal = document.getElementById('chapter-analysis-modal');
+        const title = document.getElementById('chapter-analysis-title');
+        const desc = document.getElementById('chapter-analysis-desc');
+        const canvas = document.getElementById('chapterRadarChart');
+
+        const chapterTitles = {
+            1: "Chương 1: Sở thích & Bản chất",
+            2: "Chương 2: Trăn trở & Góc nhìn",
+            3: "Chương 3: Khát vọng & Tưởng tượng",
+            4: "Chương 4: Lựa chọn & Ưu tiên"
+        };
+
+        const chapterDescs = {
+            1: "Chương này giúp chúng tôi nhận diện những sở thích tự nhiên và bản năng của bạn. Qua đó, ta thấy được 'màu sắc' chủ đạo trong cách bạn tiếp cận thế giới xung quanh.",
+            2: "Những trăn trở và góc nhìn về cuộc sống trong chương này tiết lộ những giá trị cốt lõi mà bạn đang theo đuổi hoặc những rào cản tâm lý bạn đang muốn vượt qua.",
+            3: "Khát vọng và trí tưởng tượng là chìa khóa mở ra tiềm năng vô hạn. Chương này cho thấy những đỉnh cao mà linh hồn bạn đang thực sự khao khát chạm tới.",
+            4: "Sự ưu tiên trong lựa chọn cuối cùng xác định mô hình hành động thực tế của bạn. Đây là bước quan trọng để chuyển hóa tiềm năng thành sự nghiệp thực thụ."
+        };
+
+        title.textContent = chapterTitles[chapterNum];
+        desc.textContent = chapterDescs[chapterNum];
+        modal.classList.remove('hidden');
+
+        const data = chapterScores[chapterNum];
+
+        if (chapterRadarChart) {
+            chapterRadarChart.data.datasets[0].data = data;
+            chapterRadarChart.update();
+        } else {
+            const ctx = canvas.getContext('2d');
+            chapterRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Kết quả chương',
+                        data: data,
+                        backgroundColor: 'rgba(255, 217, 61, 0.2)',
+                        borderColor: 'rgb(255, 217, 61)',
+                        pointBackgroundColor: 'rgb(255, 217, 61)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            suggestedMin: 0,
+                            suggestedMax: 20, // Lower max for single chapter
+                            ticks: { display: false },
+                            pointLabels: { font: { size: 9, weight: '600' }, padding: 15 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+    };
 
     window.changeAnswer = function (targetQIdx) {
         reansweringIdx = targetQIdx;
@@ -870,20 +958,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateChart() {
         const maxVal = Math.max(...scores, 100);
-        chart.options.scales.r.suggestedMax = maxVal;
-        chart.data.datasets[0].data = scores;
-        chart.update();
-
+        if (chart) {
+            chart.options.scales.r.suggestedMax = maxVal;
+            chart.data.datasets[0].data = scores;
+            chart.update();
+        }
         if (currentAnalysisChart) {
             currentAnalysisChart.options.scales.r.suggestedMax = maxVal;
             currentAnalysisChart.data.datasets[0].data = scores;
             currentAnalysisChart.update();
         }
-
         if (sideAnalysisChart) {
             sideAnalysisChart.options.scales.r.suggestedMax = maxVal;
             sideAnalysisChart.data.datasets[0].data = scores;
             sideAnalysisChart.update();
+        }
+        if (chapterRadarChart) { // Added for chapter-specific chart
+            const currentChapterNum = getChapterNumber(currentIdx);
+            chapterRadarChart.data.datasets[0].data = chapterScores[currentChapterNum];
+            chapterRadarChart.update();
         }
     }
 
@@ -1147,6 +1240,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateChart(); // make sure it has latest data
             analysisModal.classList.remove('hidden');
         };
+    }
+
+    const closeChapterModal = document.getElementById('close-chapter-modal');
+    if (closeChapterModal) {
+        closeChapterModal.onclick = () => document.getElementById('chapter-analysis-modal').classList.add('hidden');
     }
 
     if (chapterMobileToggle && chapterTabs) {

@@ -425,6 +425,25 @@
             </div>
         </div>
 
+        <!-- Chapter Analysis Modal -->
+        <div id="chapter-analysis-modal" class="modal hidden">
+            <div class="modal-content glass-card chapter-analysis-modal-content">
+                <button id="close-chapter-modal" class="close-btn">&times;</button>
+                <h3 id="chapter-analysis-title">Phân tích Chương</h3>
+                <p id="chapter-analysis-desc">Dữ liệu phân tích cho chương này.</p>
+                <div class="modal-chart-container chapter-chart-wrap">
+                    <canvas id="chapterRadarChart"></canvas>
+                </div>
+                <div class="chapter-analysis-note">
+                    <i data-lucide="info"></i>
+                    <span>Đây chỉ là dữ liệu tạm thời cho từng chương, dữ liệu chính xác nhất sẽ được cập nhật ở trang
+                        kết quả khi bạn hoàn thành tất cả các chương.</span>
+                </div>
+                <button class="btn-primary"
+                    onclick="document.getElementById('chapter-analysis-modal').classList.add('hidden')">Đã hiểu</button>
+            </div>
+        </div>
+
         <!-- Confirm Modal -->
         <div id="confirm-modal" class="modal hidden">
             <div class="modal-content glass-card confirm-modal-content">
