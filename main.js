@@ -1267,10 +1267,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sendBtn.onclick = submitAnswer;
     userInput.onkeypress = (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitAnswer(); } };
-    hintBtn.onclick = () => {
+    hintBtn.onclick = (e) => {
+        e.stopPropagation(); // Ngăn sự kiện lan lên trên làm nó tự đóng
         suggestionBox.classList.toggle('hidden');
         syncHintBtn();
     };
+
+    // Khi bấm vào khoảng không của chat thì ẩn gợi ý đi
+    chatWindow.addEventListener('click', () => {
+        if (!suggestionBox.classList.contains('hidden')) {
+            suggestionBox.classList.add('hidden');
+            syncHintBtn();
+        }
+    });
+
+    // Ngăn chặn bấm vào bên trong khung gợi ý làm nó tự đóng
+    suggestionBox.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
     exitBtn.onclick = exitChat;
     closeModal.onclick = () => analysisModal.classList.add('hidden');
