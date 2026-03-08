@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initChart();
-    initMiniChart();
+    // initMiniChart() sẽ được gọi SAU KHI các biến DOM đã khởi tạo xong (bên dưới)
 
     // 2. Quiz Data (Loaded from questions.js)
     // --- CHẾ ĐỘ TEST ---
@@ -112,6 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const exitBtn = document.getElementById('exit-quiz-btn');
     const analysisModal = document.getElementById('analysis-modal');
     const closeModal = document.getElementById('close-modal');
+
+    // Khởi tạo mini radar chart sau khi DOM đã sẵn sàng
+    initMiniChart();
 
     const currentCtx = document.getElementById('currentRadarChart')?.getContext('2d');
     let currentAnalysisChart;
