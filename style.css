@@ -2760,14 +2760,8 @@ footer {
         bottom: 0 !important;
     }
 
-    /* Khi focus, ẩn icons gốc để phóng to khung gõ, nhưng chừa chỗ cho nút toggle */
-    .quiz-input-area:focus-within:not(.show-tools) .input-top-actions {
+    .quiz-input-area:focus-within .input-top-actions {
         display: none !important;
-    }
-
-    .quiz-input-area:focus-within.show-tools .input-top-actions {
-        display: flex !important;
-        margin-right: 5px !important;
     }
 
     /* Vùng 7 phần bên phải */
@@ -2828,58 +2822,20 @@ footer {
     }
 
     /* Khi đang gõ: Khung gõ chiếm trọn 100% */
-    /* Khi đang gõ: Khung gõ chiếm trọn 100% nếu không show tools */
-    .quiz-input-area:focus-within:not(.show-tools) .quiz-input-main {
-        flex: 1 !important;
-        width: 100% !important;
-    }
-
-    .quiz-input-area.show-tools .quiz-input-main {
-        flex: 1 !important;
+    .quiz-input-area:focus-within .quiz-input-main {
+        flex: 0 0 100% !important;
     }
 
     /* Biến ô soạn thảo thành hình viên thuốc hệt như Messenger */
     .input-row {
         background: #f1f1f1 !important;
         border: 1px solid rgba(0, 0, 0, 0.05) !important;
-        padding: 4px 6px 4px 10px !important;
+        padding: 4px 10px 4px 15px !important;
         gap: 5px !important;
         border-radius: 22px !important;
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
-    }
-
-    /* Messenger-style toggle button */
-    .toggle-tools-btn {
-        display: none !important;
-        align-items: center;
-        justify-content: center;
-        width: 28px;
-        height: 28px;
-        background: #e4e6eb;
-        border-radius: 50%;
-        border: none;
-        color: #65676b;
-        cursor: pointer;
-        padding: 0;
-        flex-shrink: 0;
-        transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .quiz-input-area:focus-within .toggle-tools-btn {
-        display: flex !important;
-    }
-
-    .quiz-input-area.show-tools .toggle-tools-btn {
-        background: var(--primary);
-        color: white;
-        transform: rotate(180deg);
-    }
-
-    .toggle-tools-btn svg {
-        width: 18px;
-        height: 18px;
     }
 
     #user-answer {
@@ -3062,6 +3018,7 @@ footer {
         border-color: rgba(255, 142, 113, 0.7) !important;
         background: rgba(255, 248, 244, 0.95) !important;
         transform: scale(1.08) !important;
+        box-shadow: 0 6px 15px rgba(255, 142, 113, 0.2) !important;
     }
 
     .mini-radar-btn canvas {
