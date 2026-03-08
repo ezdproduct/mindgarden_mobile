@@ -884,7 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isChDone) {
             textEl.innerHTML = chapterDescsInline[chNum] || '';
         } else {
-            textEl.innerHTML = `<span class="ch-locked">🔒 Hoàn thành Chương ${chNum} để xem phân tích này.</span>`;
+            textEl.innerHTML = `<span class="ch-locked">🔒 Hoàn thành Chương ${chNum} để xem phân tích.</span>`;
         }
     };
 
