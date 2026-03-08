@@ -3001,7 +3001,7 @@ footer {
         display: flex !important;
         padding: 3px 12px 3px !important;
         /* Thu gọn tối đa */
-        gap: 1.5rem !important;
+        gap: 2.5rem !important;
         border-bottom: 1px solid rgba(255, 142, 113, 0.1);
         animation: slideDownFade 0.3s ease;
     }

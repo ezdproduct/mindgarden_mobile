@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await appendMessage('system', q.text, qIdxAtCalling);
 
             // Check for split trigger AFTER the message has finished typing
-            if (q.text.includes("Hãy tưởng tượng bạn bước vào một hiệu sách")) {
+            if (q.text.includes("Hãy tưởng tượng bạn bước vào một hiệu sách") && window.innerWidth > 768) {
                 activateSplitView();
             }
         }, 600);
