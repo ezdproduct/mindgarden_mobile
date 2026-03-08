@@ -433,9 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
                     i++;
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
                     setTimeout(type, speed);
                 } else {
                     element.classList.remove('typing-cursor');
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
                     resolve();
                 }
             }
@@ -456,10 +458,12 @@ document.addEventListener('DOMContentLoaded', () => {
             function fakeType() {
                 if (i < textContent.length) {
                     i += 2; // Type faster
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
                     setTimeout(fakeType, speed);
                 } else {
                     element.innerHTML = html;
                     element.classList.remove('typing-cursor');
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
 
                     // Re-bind Lucide icons if any
                     if (typeof lucide !== 'undefined') lucide.createIcons();
