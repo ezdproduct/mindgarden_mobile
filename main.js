@@ -861,6 +861,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterAnalysisModal = document.getElementById('chapter-analysis-modal');
     let chapterRadarChart;
 
+    // Nội dung phân tích cho từng chương
+    const chapterDescsInline = {
+        1: "Thông qua các <b>sở thích tự nhiên</b>, chúng tôi xác định được loại hình đam mê tiềm ẩn của bạn (Kỹ thuật, Sáng tạo, Chiến lược, Thấu cảm, Khám phá hay Phát triển bản thân) và mức độ 'phù hợp' của bạn với các lĩnh vực nghề nghiệp tương ứng.",
+        2: "Chương này giúp hiểu rõ những <b>'nỗi đau'</b> hoặc sự thiếu hụt đang thúc đẩy bạn muốn thay đổi. Từ đó, chúng ta tìm ra <b>động lực nội tại</b> (intrinsic motivation) cần thiết để bạn theo đuổi đam mê một cách bền vững nhất.",
+        3: "Chúng ta đang xây dựng một <b>bức tranh tương lai</b> rõ ràng. Những phân tích này giúp bạn gọi tên và vượt qua những nỗi sợ hiện tại, đồng thời định hướng những <b>mục tiêu dài hạn</b> mang tính bản sắc cá nhân.",
+        4: "Lựa chọn cuối cùng làm lộ diện <b>hệ thống ưu tiên</b> (priority stack) thực sự của bạn. Đây là lúc phân biệt giữa đam mê 'bề mặt' với đam mê 'thật sự', giúp dự đoán chính xác những <b>lựa chọn nghề nghiệp</b> và phong cách sống trong tương lai."
+    };
+
+    window.switchAnalysisTab = function (chNum) {
+        const tabs = document.querySelectorAll('#analysis-chapter-tabs .analysis-tab');
+        const textEl = document.getElementById('analysis-chapter-text');
+        tabs.forEach(t => {
+            t.classList.toggle('active', parseInt(t.dataset.ch) === chNum);
+        });
+
+        const boundaries = isTestMode ? { 1: 2, 2: 4, 3: 6 } : { 1: 30, 2: 55, 3: 75 };
+        const isChDone = isQuizCompleted ||
+            (boundaries[chNum] && currentIdx >= boundaries[chNum]) ||
+            (chNum === 4 && currentIdx >= questions.length);
+
+        if (isChDone) {
+            textEl.innerHTML = chapterDescsInline[chNum] || '';
+        } else {
+            textEl.innerHTML = `<span class="ch-locked">🔒 Hoàn thành Chương ${chNum} để xem phân tích này.</span>`;
+        }
+    };
+
     window.showChapterAnalysis = function (chapterNum) {
         const modal = document.getElementById('chapter-analysis-modal');
         const title = document.getElementById('chapter-analysis-title');
@@ -1339,6 +1366,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!currentAnalysisChart) initCurrentChart();
             updateChart(); // make sure it has latest data
             analysisModal.classList.remove('hidden');
+            // Auto switch to current chapter tab
+            switchAnalysisTab(getChapterNumber(currentIdx));
         };
     }
 
