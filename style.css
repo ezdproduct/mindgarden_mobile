@@ -2745,15 +2745,29 @@ footer {
         z-index: 100 !important;
         border: none !important;
         border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+        display: block !important;
+        /* Đảm bảo không bị hidden vô lý */
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+    }
+
+    .suggestion-box.hidden {
+        display: none !important;
     }
 
     .suggestion-header {
-        padding: 15px 20px 10px !important;
+        padding: 15px 20px 5px !important;
         font-size: 0.85rem !important;
+        white-space: normal !important;
     }
 
     .suggestion-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
         padding: 0 15px 15px !important;
+        gap: 10px !important;
+        overflow-x: visible !important;
     }
 
     /* Khi đang gõ: Khung gõ chiếm trọn 100% */
