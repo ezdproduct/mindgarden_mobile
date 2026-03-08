@@ -2493,10 +2493,10 @@ footer {
     .chart-container {
         min-height: 280px !important;
         height: 280px !important;
-        padding: 1.5rem 10px !important;
+        padding: 1rem 10px 0.5rem 10px !important;
         /* Giảm padding trái phải để rộng chỗ cho biểu đồ */
         border-radius: 24px !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 5px !important;
         width: 100% !important;
         max-width: 400px;
         margin-left: auto;
@@ -2505,6 +2505,7 @@ footer {
 
     .personality-type {
         margin-top: 0 !important;
+        padding: 0 !important;
     }
 
     .chart-container::after {
@@ -2520,9 +2521,15 @@ footer {
     }
 
     .personality-type h3 {
-        font-size: 2.5rem !important;
+        font-size: 2.2rem !important;
         line-height: 1.1 !important;
-        margin-bottom: 16px;
+        margin-bottom: 12px !important;
+        margin-top: 0 !important;
+    }
+
+    .description-text {
+        margin: 1rem 0 !important;
+        padding-left: 1rem !important;
     }
 
     .description-text p {
