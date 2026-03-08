@@ -2974,6 +2974,31 @@ footer {
         gap: 6px !important;
     }
 
+    .radar-thumbnail-btn {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 5px !important;
+        background: #ffffff !important;
+        border: 2px solid var(--primary-light) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(255, 142, 113, 0.15) !important;
+        cursor: pointer;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden !important;
+    }
+
+    .radar-thumbnail-btn:active {
+        transform: scale(0.9) !important;
+    }
+
+    .radar-thumbnail-btn canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
     .hint-btn {
         width: 32px !important;
         height: 32px !important;

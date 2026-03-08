@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initChart();
+    initMiniChart();
 
     // 2. Quiz Data (Loaded from questions.js)
     // --- CHẾ ĐỘ TEST ---
@@ -112,9 +113,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const analysisModal = document.getElementById('analysis-modal');
     const closeModal = document.getElementById('close-modal');
 
-    // Current Analysis Chart
-    const currentCtx = document.getElementById('currentRadarChart').getContext('2d');
+    const currentCtx = document.getElementById('currentRadarChart')?.getContext('2d');
     let currentAnalysisChart;
+
+    const miniCtx = document.getElementById('miniRadarChart')?.getContext('2d');
+    let miniAnalysisChart;
+
+    function initMiniChart() {
+        if (!miniCtx) return;
+        miniAnalysisChart = new Chart(miniCtx, {
+            type: 'radar',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: scores,
+                    backgroundColor: 'rgba(255, 142, 113, 0.4)',
+                    borderColor: 'rgb(255, 142, 113)',
+                    borderWidth: 1.5,
+                    pointRadius: 0 // No points for mini chart
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { display: false },
+                        grid: { display: false },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false },
+                        pointLabels: { display: false } // No text
+                    }
+                },
+                plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                animation: { duration: 400 }
+            }
+        });
+    }
 
     const sideCtx = document.getElementById('sideRadarChart').getContext('2d');
     let sideAnalysisChart;
@@ -180,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     function initCurrentChart() {
+        if (!currentCtx) return;
         currentAnalysisChart = new Chart(currentCtx, {
             type: 'radar',
             data: {
@@ -1018,6 +1055,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chapterRadarChart) { // Added for chapter-specific chart
             chapterRadarChart.data.datasets[0].data = scores;
             chapterRadarChart.update();
+        }
+        if (miniAnalysisChart) {
+            miniAnalysisChart.options.scales.r.suggestedMax = maxVal;
+            miniAnalysisChart.data.datasets[0].data = scores;
+            miniAnalysisChart.update();
         }
     }
 
