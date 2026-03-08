@@ -6,6 +6,7 @@
     padding: 120px 0 80px;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    scroll-margin-top: 90px;
     background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('28.png') no-repeat center center / cover;
     color: #1a1a1a;
     position: relative;
@@ -321,6 +322,7 @@
 
     .journey-section {
         padding: 60px 0 100px !important;
+        scroll-margin-top: 65px !important;
         background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('28.png') no-repeat center center / cover !important;
     }
 

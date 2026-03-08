@@ -75,6 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Explicit scroll to journey for better UX
+    document.querySelectorAll('a[href="#journey"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#journey');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+
     initChart();
 
     // 2. Quiz Data (Loaded from questions.js)

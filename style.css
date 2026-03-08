@@ -1581,6 +1581,20 @@ body.no-scroll {
 }
 
 
+.journey-section {
+    scroll-margin-top: 90px;
+}
+
+@media (max-width: 768px) {
+    .journey-section {
+        scroll-margin-top: 65px !important;
+    }
+}
+
+.journey-container {
+    padding: 6rem 0;
+}
+
 .chart-container {
     padding: 3.5rem;
     min-height: 550px;
