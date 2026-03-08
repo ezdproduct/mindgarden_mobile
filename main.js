@@ -111,6 +111,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const exitBtn = document.getElementById('exit-quiz-btn');
     const analysisModal = document.getElementById('analysis-modal');
     const closeModal = document.getElementById('close-modal');
+    const inputToggleBtn = document.getElementById('input-toggle-actions');
+
+    // Messenger-style toggle logic
+    if (inputToggleBtn) {
+        inputToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            inputArea.classList.toggle('show-actions-mobile');
+        });
+    }
+
+    if (userInput) {
+        userInput.addEventListener('input', () => {
+            // Khi user gõ bất kỳ phím nào, thu hồi icon và mở rộng khung gõ
+            if (inputArea.classList.contains('show-actions-mobile')) {
+                inputArea.classList.remove('show-actions-mobile');
+            }
+        });
+
+        userInput.addEventListener('focus', () => {
+            // Khi bắt đầu focus (bàn phím hiện), mặc định là thu hồi icon nếu đang gõ dở
+            if (userInput.value.trim().length > 0) {
+                inputArea.classList.remove('show-actions-mobile');
+            }
+        });
+    }
 
     // Current Analysis Chart
     const currentCtx = document.getElementById('currentRadarChart').getContext('2d');
@@ -1409,36 +1435,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chapterMobileToggle.classList.toggle('active');
             chapterTabs.classList.toggle('mobile-visible');
         };
-    }
-
-    // Mobile: Toggle extra actions next to chat input
-    const inputToggleBtn = document.getElementById('input-toggle-actions');
-    if (inputToggleBtn && inputArea && userInput) {
-        inputToggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            inputArea.classList.toggle('show-actions-on-focus');
-        });
-
-        // Hide icons when user starts typing or clicks textarea
-        userInput.addEventListener('input', () => {
-            if (inputArea.classList.contains('show-actions-on-focus')) {
-                inputArea.classList.remove('show-actions-on-focus');
-            }
-        });
-
-        userInput.addEventListener('click', () => {
-            if (inputArea.classList.contains('show-actions-on-focus')) {
-                inputArea.classList.remove('show-actions-on-focus');
-            }
-        });
-
-        // Reset state on blur (with delay to allow icon clicks)
-        userInput.addEventListener('blur', () => {
-            setTimeout(() => {
-                inputArea.classList.remove('show-actions-on-focus');
-            }, 300);
-        });
     }
 
     window.addEventListener('scroll', () => {
