@@ -2835,39 +2835,48 @@ footer {
     /* Giảm padding và font chữ của bong bóng chat */
     .chat-msg {
         font-size: 0.95rem !important;
-        max-width: 90% !important;
-        /* Mở rộng tối đa có thể để đọc chữ dễ hơn */
+        max-width: 85% !important;
+        /* Đủ rộng nhưng không quá bè */
         width: auto !important;
+        margin-bottom: 0.8rem !important;
+        /* Dãn cách vừa đủ */
     }
 
     .system-msg-content,
     .user-msg {
-        padding: 0.8rem 1.2rem !important;
+        padding: 0.75rem 1.1rem !important;
         width: auto !important;
     }
 
     .user-msg {
         margin-left: auto !important;
         margin-right: 0 !important;
+        background: linear-gradient(135deg, #FFB3A1 0%, #FF8E71 100%) !important;
+        color: var(--white) !important;
+        border-radius: 20px 20px 4px 20px !important;
         align-self: flex-end !important;
         text-align: left !important;
         display: block !important;
-        /* Luôn ép sát bên phải */
+        box-shadow: 0 4px 15px rgba(255, 142, 113, 0.1) !important;
     }
 
     .system-msg {
         margin-right: auto !important;
         margin-left: 0 !important;
         align-self: flex-start !important;
-        width: auto !important;
-        max-width: 90% !important;
-        gap: 8px !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: flex-end !important;
         justify-content: flex-start !important;
-        /* Đảm bảo không bị căn giữa */
+        gap: 8px !important;
         text-align: left !important;
+        width: auto !important;
+    }
+
+    .system-msg-content {
+        background: #F3F4F6 !important;
+        color: var(--text-dark) !important;
+        border-radius: 20px 20px 20px 4px !important;
     }
 
     /* Container chung cho đoạn chat */
@@ -2876,11 +2885,11 @@ footer {
         flex-direction: column !important;
         align-items: flex-start !important;
         justify-content: flex-start !important;
-        /* Đảm bảo con không bị căn giữa trục dọc */
-        /* Ép canh trái cho tất cả, user sẽ tự override sang phải */
         width: 100% !important;
-        padding: 10px 15px !important;
+        padding: 10px 15.5px !important;
         overflow-x: hidden !important;
+        gap: 0 !important;
+        /* Use margin-bottom on chat-msg instead for consistency */
     }
 
     /* QUAN TRỌNG: Sửa lỗi 7/3 của khung chat phía trên */
