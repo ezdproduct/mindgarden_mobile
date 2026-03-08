@@ -2999,31 +2999,32 @@ footer {
 
     /* Nút radar thumbnail: hình vuông bo góc, không có background mạnh */
     .mini-radar-btn {
-        width: 50px !important;
-        height: 50px !important;
-        padding: 4px !important;
+        width: 32px !important;
+        height: 32px !important;
+        padding: 0 !important;
         border-radius: 50% !important;
-        border: 1.5px solid rgba(255, 142, 113, 0.3) !important;
-        background: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid var(--primary-light) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(10px);
         overflow: hidden !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 2px 8px rgba(255, 142, 113, 0.12) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
         transition: all 0.2s ease !important;
     }
 
     .mini-radar-btn:hover,
     .mini-radar-btn:active {
-        border-color: rgba(255, 142, 113, 0.7) !important;
-        background: rgba(255, 248, 244, 0.95) !important;
-        transform: scale(1.08) !important;
+        border-color: var(--primary-light) !important;
+        background: #ffffff !important;
+        transform: translateY(-2px) !important;
         box-shadow: 0 6px 15px rgba(255, 142, 113, 0.2) !important;
     }
 
     .mini-radar-btn canvas {
-        width: 42px !important;
-        height: 42px !important;
+        width: 28px !important;
+        height: 28px !important;
         display: block !important;
     }
 
