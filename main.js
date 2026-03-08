@@ -404,8 +404,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let speed = sender === 'user' ? 15 : 25;
         if (isTestMode) speed = 0; // Gõ tức thì khi test
 
-        // Use innerHTML for final message with link, otherwise use textContent
-        if (text.includes('<a')) {
+        // Use innerHTML for messages with HTML tags, otherwise use textContent
+        if (text.includes('<')) {
             await typeWriterHTML(p, text, speed);
         } else {
             await typeWriter(p, text, speed);
