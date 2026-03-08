@@ -78,7 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initChart();
 
     // 2. Quiz Data (Loaded from questions.js)
-    const questions = questionsData;
+    // --- CHẾ ĐỘ TEST ---
+    const isTestMode = true; // Đổi thành false để khôi phục đầy đủ 100 câu
+    let questions = questionsData;
+    if (isTestMode) {
+        questions = [
+            ...questionsData.slice(0, 2),   // Ch 1: Sở thích
+            ...questionsData.slice(30, 32), // Ch 2: Trăn trở
+            ...questionsData.slice(55, 57), // Ch 3: Khát vọng
+            ...questionsData.slice(75, 77)  // Ch 4: Lựa chọn
+        ];
+    }
+    // -------------------
 
     let currentIdx = 0;
     let isChatStarted = false;
@@ -233,9 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (chapterTabs) chapterTabs.classList.remove('hidden');
             chatWindow.innerHTML = '';
             appendMessage('user', 'Tôi muốn tìm thấy đam mê của mình');
-            setTimeout(() => appendMessage('system', 'Hmm tôi cảm giác bạn đang khá mơ hồ về con đường phía trước.'), 800);
-            setTimeout(() => appendMessage('system', 'Nhưng không sao, chúng ta rồi sẽ tìm ra con đường dành cho bản thân mình mà thoi! Bạn có thể thoải mái chia sẻ qua những gợi mở của tôi nhé!'), 2300);
-            setTimeout(() => nextQuestion(), 4000);
+            const dFactor = isTestMode ? 0.1 : 1;
+            setTimeout(() => appendMessage('system', 'Hmm tôi cảm giác bạn đang khá mơ hồ về con đường phía trước.'), 800 * dFactor);
+            setTimeout(() => appendMessage('system', 'Nhưng không sao, chúng ta rồi sẽ tìm ra con đường dành cho bản thân mình mà thoi! Bạn có thể thoải mái chia sẻ qua những gợi mở của tôi nhé!'), 2300 * dFactor);
+            setTimeout(() => nextQuestion(), 4000 * dFactor);
         } else {
             // Continuation logic: ensure scroll to bottom
             chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -337,6 +349,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let messageQueue = [];
     let isTyping = false;
 
+    if (isTestMode) {
+        console.log('--- CHẾ ĐỘ TEST ĐÃ BẬT: 2 CÂU/CHƯƠNG, GÕ NHANH ---');
+    }
+
     async function processQueue() {
         if (isTyping || messageQueue.length === 0) return;
         isTyping = true;
@@ -385,7 +401,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Áp dụng hiệu ứng gõ cho cả User và System
         // User gõ nhanh hơn Bot một chút
-        const speed = sender === 'user' ? 15 : 25;
+        let speed = sender === 'user' ? 15 : 25;
+        if (isTestMode) speed = 0; // Gõ tức thì khi test
 
         // Use innerHTML for final message with link, otherwise use textContent
         if (text.includes('<a')) {
@@ -498,6 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const q = questions[currentIdx];
         const qIdxAtCalling = currentIdx;
 
+        const dFactor = isTestMode ? 0.1 : 1;
         setTimeout(async () => {
             await appendMessage('system', q.text, qIdxAtCalling);
 
@@ -742,6 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastAnswerFeedback = "";
 
+        const dFactor = isTestMode ? 0.1 : 1;
         setTimeout(() => {
             appendMessage('system', systemResponse, targetIdx);
 
@@ -754,17 +773,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isReanswer) {
                 // CHAPTER BOUNDARIES
-                const boundaries = { 30: 1, 55: 2, 75: 3 };
+                const boundaries = isTestMode ? { 2: 1, 4: 2, 6: 3 } : { 30: 1, 55: 2, 75: 3 };
                 if (boundaries[currentIdx]) {
                     showChapterCompletion(boundaries[currentIdx]);
                 } else {
-                    setTimeout(() => nextQuestion(), 1200);
+                    setTimeout(() => nextQuestion(), 1200 * dFactor);
                 }
             } else {
                 reansweringIdx = null; // Done re-answering
                 updateSuggestions(currentIdx);
             }
-        }, 800);
+        }, 800 * dFactor);
     }
 
     function showChapterCompletion(chapterNum) {
@@ -791,32 +810,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updateProgress() {
-        // Chapter mapping:
-        // Ch 1 (Sở thích): 0-29, Ch 2: 30-54, Ch 3: 55-74, Ch 4: 75-99
         let currentChapter = 1;
         let chapterIdx = 0;
         let chapterTotal = 30;
 
-        if (currentIdx >= 75) {
-            currentChapter = 4;
-            chapterIdx = currentIdx - 75;
-            chapterTotal = 25;
-        } else if (currentIdx >= 55) {
-            currentChapter = 3;
-            chapterIdx = currentIdx - 55;
-            chapterTotal = 20;
-        } else if (currentIdx >= 30) {
-            currentChapter = 2;
-            chapterIdx = currentIdx - 30;
-            chapterTotal = 25;
+        if (isTestMode) {
+            chapterTotal = 2;
+            if (currentIdx >= 6) {
+                currentChapter = 4;
+                chapterIdx = currentIdx - 6;
+            } else if (currentIdx >= 4) {
+                currentChapter = 3;
+                chapterIdx = currentIdx - 4;
+            } else if (currentIdx >= 2) {
+                currentChapter = 2;
+                chapterIdx = currentIdx - 2;
+            } else {
+                currentChapter = 1;
+                chapterIdx = currentIdx;
+            }
         } else {
-            currentChapter = 1;
-            chapterIdx = currentIdx;
-            chapterTotal = 30;
+            // Ch 1 (Sở thích): 0-29, Ch 2: 30-54, Ch 3: 55-74, Ch 4: 75-99
+            if (currentIdx >= 75) {
+                currentChapter = 4;
+                chapterIdx = currentIdx - 75;
+                chapterTotal = 25;
+            } else if (currentIdx >= 55) {
+                currentChapter = 3;
+                chapterIdx = currentIdx - 55;
+                chapterTotal = 20;
+            } else if (currentIdx >= 30) {
+                currentChapter = 2;
+                chapterIdx = currentIdx - 30;
+                chapterTotal = 25;
+            } else {
+                currentChapter = 1;
+                chapterIdx = currentIdx;
+                chapterTotal = 30;
+            }
         }
 
         // Clamp chapterIdx for the 100% case when finishing
-        if (currentIdx >= 100) chapterIdx = chapterTotal;
+        const totalQ = questions.length;
+        if (currentIdx >= totalQ) chapterIdx = chapterTotal;
 
         const percent = Math.round((chapterIdx / chapterTotal) * 100);
         document.getElementById('quiz-progress-fill').style.width = `${percent}%`;
