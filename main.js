@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initChart();
-    // initMiniChart() sẽ được gọi SAU KHI các biến DOM đã khởi tạo xong (bên dưới)
 
     // 2. Quiz Data (Loaded from questions.js)
     // --- CHẾ ĐỘ TEST ---
@@ -113,50 +112,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const analysisModal = document.getElementById('analysis-modal');
     const closeModal = document.getElementById('close-modal');
 
-    // Khởi tạo mini radar chart sau khi DOM đã sẵn sàng
-    initMiniChart();
-
-    const currentCtx = document.getElementById('currentRadarChart')?.getContext('2d');
+    // Current Analysis Chart
+    const currentCtx = document.getElementById('currentRadarChart').getContext('2d');
     let currentAnalysisChart;
 
-    const miniCtx = document.getElementById('miniRadarChart')?.getContext('2d');
-    let miniAnalysisChart;
+    const sideCtx = document.getElementById('sideRadarChart').getContext('2d');
+    let sideAnalysisChart;
 
-    function initMiniChart() {
-        if (!miniCtx) return;
-        miniAnalysisChart = new Chart(miniCtx, {
+    // Mini Radar Chart (thumbnail trong nút xem phân tích trên mobile)
+    const miniRadarCanvas = document.getElementById('mini-radar-chart');
+    let miniRadarChart;
+
+    function initMiniRadarChart() {
+        if (!miniRadarCanvas) return;
+        miniRadarChart = new Chart(miniRadarCanvas.getContext('2d'), {
             type: 'radar',
             data: {
                 labels: categories,
                 datasets: [{
                     data: scores,
-                    backgroundColor: 'rgba(255, 142, 113, 0.4)',
+                    backgroundColor: 'rgba(255, 142, 113, 0.35)',
                     borderColor: 'rgb(255, 142, 113)',
                     borderWidth: 1.5,
-                    pointRadius: 0 // No points for mini chart
+                    pointRadius: 0,
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
+                responsive: false,
+                animation: { duration: 400 },
                 scales: {
                     r: {
-                        angleLines: { display: false },
-                        grid: { display: false },
                         suggestedMin: 0,
                         suggestedMax: 100,
                         ticks: { display: false },
-                        pointLabels: { display: false } // No text
+                        pointLabels: { display: false },
+                        grid: { color: 'rgba(0,0,0,0.08)' },
+                        angleLines: { color: 'rgba(0,0,0,0.08)' },
                     }
                 },
-                plugins: { legend: { display: false }, tooltip: { enabled: false } },
-                animation: { duration: 400 }
+                plugins: { legend: { display: false } },
             }
         });
     }
 
-    const sideCtx = document.getElementById('sideRadarChart').getContext('2d');
-    let sideAnalysisChart;
+    initMiniRadarChart();
+
 
     function initSideChart() {
         sideAnalysisChart = new Chart(sideCtx, {
@@ -219,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     function initCurrentChart() {
-        if (!currentCtx) return;
         currentAnalysisChart = new Chart(currentCtx, {
             type: 'radar',
             data: {
@@ -1055,14 +1054,15 @@ document.addEventListener('DOMContentLoaded', () => {
             sideAnalysisChart.data.datasets[0].data = scores;
             sideAnalysisChart.update();
         }
-        if (chapterRadarChart) { // Added for chapter-specific chart
+        if (chapterRadarChart) {
             chapterRadarChart.data.datasets[0].data = scores;
             chapterRadarChart.update();
         }
-        if (miniAnalysisChart) {
-            miniAnalysisChart.options.scales.r.suggestedMax = maxVal;
-            miniAnalysisChart.data.datasets[0].data = scores;
-            miniAnalysisChart.update();
+        // Cập nhật mini radar thumbnail trên mobile
+        if (miniRadarChart) {
+            miniRadarChart.options.scales.r.suggestedMax = maxVal;
+            miniRadarChart.data.datasets[0].data = scores;
+            miniRadarChart.update();
         }
     }
 

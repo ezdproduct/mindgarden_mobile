@@ -2777,32 +2777,26 @@ footer {
     }
 
     .suggestion-header {
-        padding: 8px 15px 0 !important;
-        /* Cực kỳ sát bên dưới */
-        font-size: 0.75rem !important;
+        padding: 10px 20px 2px !important;
+        /* Giảm padding trên dưới */
+        font-size: 0.8rem !important;
         white-space: normal !important;
         color: var(--text-muted) !important;
         font-weight: 600 !important;
-        opacity: 0.7 !important;
+        opacity: 0.8 !important;
     }
 
     .suggestion-grid {
         display: flex !important;
         flex-direction: row !important;
-        flex-wrap: wrap !important;
-        padding: 2px 15px 10px !important;
-        /* Cực sát với header */
-        gap: 4px 6px !important;
-        /* Khoảng cách giữa 2 hàng cực nhỏ (4px) */
-        overflow-x: hidden !important;
-        width: 100% !important;
-    }
-
-    .suggestion-item {
-        padding: 5px 12px !important;
-        /* Mỏng hơn nữa */
-        font-size: 0.8rem !important;
-        border-radius: 8px !important;
+        flex-wrap: nowrap !important;
+        padding: 5px 15px 12px !important;
+        /* Giảm padding dưới */
+        gap: 10px !important;
+        /* Giảm gap giữa các item */
+        overflow-x: visible !important;
+        width: max-content !important;
+        /* Quan trọng để cuộn ngang */
     }
 
     /* Khi đang gõ: Khung gõ chiếm trọn 100% */
@@ -2980,29 +2974,33 @@ footer {
         gap: 6px !important;
     }
 
-    .radar-thumbnail-btn {
-        width: 42px !important;
-        height: 42px !important;
-        padding: 5px !important;
-        background: #ffffff !important;
-        border: 2px solid var(--primary-light) !important;
+    /* Nút radar thumbnail: hình vuông bo góc, không có background mạnh */
+    .mini-radar-btn {
+        width: 44px !important;
+        height: 44px !important;
+        padding: 2px !important;
         border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(255, 142, 113, 0.15) !important;
-        cursor: pointer;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        border: 1.5px solid rgba(255, 142, 113, 0.3) !important;
+        background: rgba(255, 255, 255, 0.8) !important;
         overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 2px 8px rgba(255, 142, 113, 0.12) !important;
+        transition: all 0.2s ease !important;
     }
 
-    .radar-thumbnail-btn:active {
-        transform: scale(0.9) !important;
+    .mini-radar-btn:hover,
+    .mini-radar-btn:active {
+        border-color: rgba(255, 142, 113, 0.7) !important;
+        background: rgba(255, 248, 244, 0.95) !important;
+        transform: scale(1.08) !important;
     }
 
-    .radar-thumbnail-btn canvas {
-        width: 100% !important;
-        height: 100% !important;
+    .mini-radar-btn canvas {
+        width: 40px !important;
+        height: 40px !important;
+        display: block !important;
     }
 
     .hint-btn {
