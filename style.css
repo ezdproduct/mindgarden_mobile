@@ -1944,6 +1944,20 @@ footer {
 @media (max-width: 768px) {
     .results-grid {
         grid-template-columns: 1fr;
+        gap: 0.5rem !important;
+        /* Giảm khoảng cách giữa radar và text */
+    }
+
+    .chart-container {
+        padding: 1.5rem !important;
+        min-height: 300px !important;
+        border-radius: 30px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .personality-type {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 
     .detail-row {
